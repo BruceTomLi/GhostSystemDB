@@ -1,0 +1,410 @@
+-- MySQL dump 10.13  Distrib 5.6.21, for Win64 (x86_64)
+--
+-- Host: localhost    Database: db_ghost
+-- ------------------------------------------------------
+-- Server version	5.6.21-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tb_admire`
+--
+
+DROP TABLE IF EXISTS `tb_admire`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_admire` (
+  `admireId` varchar(10) NOT NULL,
+  `commentId` int(10) NOT NULL,
+  `admireGiver` varchar(20) NOT NULL,
+  `admireGetter` varchar(20) NOT NULL,
+  PRIMARY KEY (`admireId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_admire`
+--
+
+LOCK TABLES `tb_admire` WRITE;
+/*!40000 ALTER TABLE `tb_admire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_admire` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_article`
+--
+
+DROP TABLE IF EXISTS `tb_article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_article` (
+  `articleId` varchar(10) NOT NULL,
+  `title` varchar(40) NOT NULL,
+  `author` varchar(20) NOT NULL,
+  `publishDate` datetime NOT NULL,
+  `publisher` varchar(20) NOT NULL,
+  `size` int(10) NOT NULL,
+  `label` varchar(20) NOT NULL,
+  `Content` text NOT NULL,
+  `isPublic` tinyint(1) NOT NULL,
+  PRIMARY KEY (`articleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_article`
+--
+
+LOCK TABLES `tb_article` WRITE;
+/*!40000 ALTER TABLE `tb_article` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_authority`
+--
+
+DROP TABLE IF EXISTS `tb_authority`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_authority` (
+  `authorityId` varchar(10) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `note` varchar(100) NOT NULL,
+  PRIMARY KEY (`authorityId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_authority`
+--
+
+LOCK TABLES `tb_authority` WRITE;
+/*!40000 ALTER TABLE `tb_authority` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_authority` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_city`
+--
+
+DROP TABLE IF EXISTS `tb_city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_city` (
+  `cityId` varchar(25) NOT NULL,
+  `provinceId` varchar(25) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  PRIMARY KEY (`cityId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_city`
+--
+
+LOCK TABLES `tb_city` WRITE;
+/*!40000 ALTER TABLE `tb_city` DISABLE KEYS */;
+INSERT INTO `tb_city` VALUES ('1','4','昆山市'),('10','6','郑州市'),('11','7','唐山市'),('12','7','石家庄市'),('2','8','成都市'),('3','3','深圳市'),('4','3','广州市'),('5','1','上海市'),('6','2','北京市'),('7','6','洛阳市'),('8','5','武汉市'),('9','5','天门市');
+/*!40000 ALTER TABLE `tb_city` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_comment`
+--
+
+DROP TABLE IF EXISTS `tb_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_comment` (
+  `commentId` varchar(25) NOT NULL,
+  `questionId` varchar(25) NOT NULL,
+  `commenter` varchar(20) NOT NULL,
+  `commentDate` datetime NOT NULL,
+  `content` tinytext NOT NULL,
+  PRIMARY KEY (`commentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_comment`
+--
+
+LOCK TABLES `tb_comment` WRITE;
+/*!40000 ALTER TABLE `tb_comment` DISABLE KEYS */;
+INSERT INTO `tb_comment` VALUES ('5b48a8e6370d33.58511928','5b45c856e9c0f6.75638452','王五','2018-07-13 13:28:06','这里测试给问题增加一条评论'),('5b48a9061a2cf7.52685362','5b45c856e9c0f6.75638452','王五','2018-07-13 13:28:38','这里测试给问题增加一条评论');
+/*!40000 ALTER TABLE `tb_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_follow`
+--
+
+DROP TABLE IF EXISTS `tb_follow`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_follow` (
+  `followId` varchar(10) NOT NULL,
+  `star` varchar(20) NOT NULL,
+  `fans` varchar(20) NOT NULL,
+  PRIMARY KEY (`followId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_follow`
+--
+
+LOCK TABLES `tb_follow` WRITE;
+/*!40000 ALTER TABLE `tb_follow` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_follow` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_job`
+--
+
+DROP TABLE IF EXISTS `tb_job`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_job` (
+  `jobId` varchar(10) NOT NULL,
+  `job` varchar(30) NOT NULL,
+  PRIMARY KEY (`jobId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_job`
+--
+
+LOCK TABLES `tb_job` WRITE;
+/*!40000 ALTER TABLE `tb_job` DISABLE KEYS */;
+INSERT INTO `tb_job` VALUES ('1','IT'),('2','快递员'),('3','保洁员'),('4','java开发'),('5','网络工程师'),('6','保安'),('7','收银员'),('8','前端工程师'),('9','音乐老师');
+/*!40000 ALTER TABLE `tb_job` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_province`
+--
+
+DROP TABLE IF EXISTS `tb_province`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_province` (
+  `provinceId` varchar(10) NOT NULL,
+  `province` varchar(20) NOT NULL,
+  PRIMARY KEY (`provinceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_province`
+--
+
+LOCK TABLES `tb_province` WRITE;
+/*!40000 ALTER TABLE `tb_province` DISABLE KEYS */;
+INSERT INTO `tb_province` VALUES ('1','上海'),('2','北京'),('3','广东省'),('4','江苏省'),('5','湖北省'),('6','河南省'),('7','河北省'),('8','四川省');
+/*!40000 ALTER TABLE `tb_province` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_question`
+--
+
+DROP TABLE IF EXISTS `tb_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_question` (
+  `questionId` varchar(25) NOT NULL,
+  `asker` varchar(20) NOT NULL,
+  `askDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `questionType` varchar(20) NOT NULL,
+  `content` varchar(300) NOT NULL,
+  `questionDescription` text,
+  PRIMARY KEY (`questionId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_question`
+--
+
+LOCK TABLES `tb_question` WRITE;
+/*!40000 ALTER TABLE `tb_question` DISABLE KEYS */;
+INSERT INTO `tb_question` VALUES ('5b45c856e9c0f6.75638451','王五','2018-07-11 01:05:26','IT','这是单元测试里面用来测试创建一个新的问题的测试内容','这里是问题描述，实际情况中可以填写超文本信息'),('5b45c96657ca80.95038956','王五','2018-07-13 02:51:34','IT','这是单元测试里面用来测试创建一个新的问题的测试','这里是问题描述，实际情况中可以填写超文本信息'),('5b48252b7d15e9.74508486','liyun','2018-07-13 04:06:03','IT','常见的操作系统类型有哪几种？','请问常见的操作系统有哪几种，可以分别介绍一下吗？<div><br></div><div><img src=\"../UploadImages/fishing.jpg\"><br></div>'),('5b4840680a1ed9.04299901','王五','2018-07-13 06:02:16','IT','请问jquey中ajax的基本用法是什么？','<div>请问jquey中ajax的基本用法是什么？</div><img src=\"../UploadImages/sheep.jpg\">');
+/*!40000 ALTER TABLE `tb_question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_reply`
+--
+
+DROP TABLE IF EXISTS `tb_reply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_reply` (
+  `replyId` varchar(10) NOT NULL,
+  `commentId` int(10) NOT NULL,
+  `replyer` varchar(20) NOT NULL,
+  `replyDate` datetime NOT NULL,
+  `content` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_reply`
+--
+
+LOCK TABLES `tb_reply` WRITE;
+/*!40000 ALTER TABLE `tb_reply` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_reply` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_role`
+--
+
+DROP TABLE IF EXISTS `tb_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_role` (
+  `roleId` varchar(10) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `note` varchar(100) NOT NULL,
+  PRIMARY KEY (`roleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_role`
+--
+
+LOCK TABLES `tb_role` WRITE;
+/*!40000 ALTER TABLE `tb_role` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_roleauthority`
+--
+
+DROP TABLE IF EXISTS `tb_roleauthority`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_roleauthority` (
+  `roleId` varchar(10) NOT NULL,
+  `authorityId` varchar(10) NOT NULL,
+  PRIMARY KEY (`roleId`,`authorityId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_roleauthority`
+--
+
+LOCK TABLES `tb_roleauthority` WRITE;
+/*!40000 ALTER TABLE `tb_roleauthority` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_roleauthority` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_session`
+--
+
+DROP TABLE IF EXISTS `tb_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_session` (
+  `id` varchar(32) NOT NULL,
+  `data` text,
+  `last_accessed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_session`
+--
+
+LOCK TABLES `tb_session` WRITE;
+/*!40000 ALTER TABLE `tb_session` DISABLE KEYS */;
+INSERT INTO `tb_session` VALUES ('494v7fj1ln8aieco4ga659ckh1','','2018-07-13 08:47:24'),('5r7s5q6ihhiu4570kck1mvlpb4','','2018-07-13 06:52:29'),('9r1mob0sgo1a0eb97ofm44icq6','','2018-07-13 06:33:36'),('essv2225mbcpcggkfnplgj45u1','username|s:5:\"liyun\";','2018-07-13 14:21:06'),('hkr207f1b8db2ni81s7us58rf0','','2018-07-13 14:34:11'),('in9rrj9rvbrhdpfi13his72kv7','','2018-07-13 09:20:18'),('m1dsi7fljdps3hnn23jq17apd3','','2018-07-13 06:33:15'),('oqn6bp0nhaf7uv0kb4oofkaab2','username|s:5:\"liyun\";','2018-07-13 13:38:11'),('uh56oi8a580pr47vj3qjpn7ib6','username|s:5:\"liyun\";','2018-07-13 09:03:59');
+/*!40000 ALTER TABLE `tb_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_user`
+--
+
+DROP TABLE IF EXISTS `tb_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_user` (
+  `userId` varchar(25) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `sex` tinyint(1) NOT NULL,
+  `job` varchar(20) NOT NULL,
+  `province` varchar(20) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `oneWord` varchar(100) NOT NULL,
+  `heading` varchar(200) NOT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_user`
+--
+
+LOCK TABLES `tb_user` WRITE;
+/*!40000 ALTER TABLE `tb_user` DISABLE KEYS */;
+INSERT INTO `tb_user` VALUES ('10','李四','lisi@123','lisi@qq.com',1,'empty','','city','我是李四',''),('11','王五','d56a2ae2b74ed3c859aaf2f8e32a5897','wangwu@qq.com',1,'empty','','city','我是王五，大家好',''),('12','tom li','342df5b036b2f28184536820af6d1caf','1402343@qq.com',1,'IT','江苏','昆山','I am a programmer','img/test.jpg'),('19','赵六','9d5bdfad7451331c06b8afc87192d83c','zhaoliu@qq.com',1,'empty','province','city','我是赵六，大家好',''),('20','','d41d8cd98f00b204e9800998ecf8427e','zhangsan@qq.com',1,'empty','province','city','',''),('21','','d41d8cd98f00b204e9800998ecf8427e','zhangsan@qq.com',1,'empty','province','city','',''),('22','','d41d8cd98f00b204e9800998ecf8427e','zhangsan@qq.com',1,'empty','province','city','',''),('23','fsa','66541bb3826904db618e7659313e36d7','afas@qq.comadf',1,'empty','province','city','',''),('24','dsd','6b0f09e6ef5fec9a9ef24b9074a9f66c','dsdd@qq.com',1,'empty','province','city','',''),('25','wefew','c7081f8f3d7c1c47bb3189c5afed26d6','dsdd@qq.codsfa',1,'empty','province','city','',''),('26','wefew4','32818e55575a3c4c731cbfe3a4915d90','dsdd@qq.codsf',1,'empty','province','city','',''),('27','wefe','81c5c45172f5df2ac50e71e561bdfc6d','fasdk@wef.com',1,'empty','province','city','',''),('28','fgre','cda697fd5ed77d81020a9d2985cb5fe1','fasl.fads@fad.com',1,'empty','province','city','',''),('29','fgrefae','b96365b9cdf7961e26496dfb72cfce43','fasl.fads@fad.comef',1,'empty','province','city','',''),('30','eg','87ea4a5f0f4fc655d059bbce1ca4cc1b','fas.com@ww.adf',1,'empty','province','city','',''),('31','egasdf','e8dacf0128b1779a90c5b29e2ff428fb','fsadklfjl@fajsk.co',1,'empty','province','city','',''),('32','egasf','623aeadff50a347715631ecf7bf04366','fasjdkf@sdakjfk.com',1,'empty','province','city','',''),('33','fa','e0ecb908d1a3ae92726b0883966ae666','adsf.eofd@fdask.co',1,'empty','province','city','',''),('34','aa','e10adc3949ba59abbe56e057f20f883e','aa@qq.com',1,'java开发','province','city','',''),('5b4599f6915402.86800617','liyun','17bb4f69a2f9bbef175d9a1a4e095a61','liyuntian@123.com',1,'IT','湖北省','武汉市','我是一个程序员',''),('7','tomtom','faefawe','fasdfa@qq.com',1,'empty','','city','',''),('8','tomtom','fawefae','fasdfa@qq.com',1,'empty','','city','',''),('9','张三','zhangsan@123','zhangsan@qq.com',1,'empty','','city','我是张三','');
+/*!40000 ALTER TABLE `tb_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_userrole`
+--
+
+DROP TABLE IF EXISTS `tb_userrole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_userrole` (
+  `userId` int(11) NOT NULL,
+  `roleId` int(11) NOT NULL,
+  PRIMARY KEY (`userId`,`roleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_userrole`
+--
+
+LOCK TABLES `tb_userrole` WRITE;
+/*!40000 ALTER TABLE `tb_userrole` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_userrole` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-07-14 13:54:28
